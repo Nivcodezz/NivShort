@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NivrixShortLink</title>
+</head>
+<body style="text-align:center;font-family:Arial">
+
+<h1>NivrixShortLink</h1>
+
+<input id="url" placeholder="https://example.com">
+<button onclick="go()">Shorten</button>
+
+<p id="out"></p>
+
+<script>
+async function go(){
+  const url = document.getElementById("url").value;
+
+  const res = await fetch("/api/shorten",{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body: JSON.stringify({ url })
+  });
+
+  const d = await res.json();
+  document.getElementById("out").innerText = d.shortUrl;
+}
+</script>
+
+</body>
+</html>
