@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+</head>
+<body style="font-family:Arial">
+
+<h2>Dashboard</h2>
+
+<p>Klik: <span id="c"></span></p>
+<p>Earnings: $<span id="e"></span></p>
+
+<script>
+async function load(){
+  const r = await fetch("/api/dashboard");
+  const d = await r.json();
+
+  document.getElementById("c").innerText = d.totalClicks;
+  document.getElementById("e").innerText = d.earnings.toFixed(2);
+}
+load();
+</script>
+
+</body>
+</html>
